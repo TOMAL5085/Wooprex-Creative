@@ -1,9 +1,13 @@
+import { useEffect, useState } from 'react'
 import './App.css'
 import heroWorkshop from './assets/hero-workshop.png'
 import serviceBranding from './assets/service-branding.png'
 import serviceGraphic from './assets/service-graphic.png'
 import serviceMarketing from './assets/service-marketing.png'
 import serviceVideo from './assets/service-video.png'
+import logoBeka from './assets/logo-beka.png'
+import logoConnex from './assets/logo-connex.png'
+import logoPilot from './assets/logo-pilot.png'
 
 const navItems = ['Home', 'Pages', 'Portfolio', 'Blogs', 'Contact']
 
@@ -40,6 +44,12 @@ const projectCards = [
   { title: 'Interface Design', text: '' },
 ]
 
+const partnerLogos = [
+  { name: 'Beka', image: logoBeka },
+  { name: 'ConneX', image: logoConnex },
+  { name: 'Pilot', image: logoPilot },
+]
+
 const featureCards = [
   {
     number: '01',
@@ -63,10 +73,90 @@ const featureCards = [
   },
 ]
 
-const team = [
-  { name: 'Cameron Williamson', role: 'Designer' },
-  { name: 'Robert Fox', role: 'Developer' },
-  { name: 'Theresa Webb', role: 'Content creator' },
+const testimonialSlides = [
+  [
+    {
+      name: 'Michel Perci',
+      role: 'Designer',
+      copy: 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has.',
+      avatarClass: 'avatar avatar-1',
+    },
+    {
+      name: 'Ariana Holt',
+      role: 'Strategist',
+      copy: 'Working with the team felt effortless from kickoff to launch. Their process stayed organized, collaborative, and focused on clear business outcomes.',
+      avatarClass: 'avatar avatar-4',
+    },
+    {
+      name: 'Jude Palmer',
+      role: 'Founder',
+      copy: 'The final experience looked polished and premium, but what mattered most was how quickly it helped us present our offer with confidence.',
+      avatarClass: 'avatar avatar-5',
+    },
+  ],
+  [
+    {
+      name: 'Selena Brooks',
+      role: 'Marketing Lead',
+      copy: 'Every deliverable arrived thoughtful and sharp. The visual direction, communication, and attention to detail made the partnership easy to trust.',
+      avatarClass: 'avatar avatar-6',
+    },
+    {
+      name: 'Rina Moore',
+      role: 'Product Manager',
+      copy: 'They balanced creativity with structure really well. We got a result that felt distinctive without losing clarity or usability.',
+      avatarClass: 'avatar avatar-7',
+    },
+    {
+      name: 'Luca Bennett',
+      role: 'Creative Director',
+      copy: 'The team brought strong ideas to the table and translated them into design decisions that felt intentional at every stage.',
+      avatarClass: 'avatar avatar-8',
+    },
+  ],
+  [
+    {
+      name: 'Nora Hayes',
+      role: 'Operations Lead',
+      copy: 'What stood out most was the consistency. The project stayed aligned, deadlines stayed realistic, and the final work exceeded expectations.',
+      avatarClass: 'avatar avatar-9',
+    },
+    {
+      name: 'Milan Cross',
+      role: 'Brand Manager',
+      copy: 'The team translated rough ideas into a refined visual system quickly. Every step felt intentional, and the final result gave the brand much more clarity.',
+      avatarClass: 'avatar avatar-2',
+    },
+    {
+      name: 'Clara West',
+      role: 'Consultant',
+      copy: 'From the first review to the handoff, communication stayed smooth and practical. The final work looked premium and felt easy to present to stakeholders.',
+      avatarClass: 'avatar avatar-3',
+    },
+  ],
+]
+
+const teamSlides = [
+  [
+    { name: 'Cameron Williamson', role: 'Designer', photoClass: 'team-photo-1' },
+    { name: 'Robert Fox', role: 'Developer', photoClass: 'team-photo-2' },
+    { name: 'Theresa Webb', role: 'Content creator', photoClass: 'team-photo-3' },
+  ],
+  [
+    { name: 'Jenny Wilson', role: 'Creative lead', photoClass: 'team-photo-4' },
+    { name: 'Marvin McKinney', role: 'UI designer', photoClass: 'team-photo-5' },
+    { name: 'Kristin Watson', role: 'Brand strategist', photoClass: 'team-photo-6' },
+  ],
+  [
+    { name: 'Leslie Alexander', role: 'Art director', photoClass: 'team-photo-7' },
+    { name: 'Jacob Jones', role: 'Developer', photoClass: 'team-photo-8' },
+    { name: 'Savannah Nguyen', role: 'Motion designer', photoClass: 'team-photo-9' },
+  ],
+  [
+    { name: 'Courtney Henry', role: 'Photographer', photoClass: 'team-photo-10' },
+    { name: 'Wade Warren', role: 'Growth manager', photoClass: 'team-photo-11' },
+    { name: 'Guy Hawkins', role: 'Content creator', photoClass: 'team-photo-12' },
+  ],
 ]
 
 const blogPosts = [
@@ -84,7 +174,112 @@ const blogPosts = [
   },
 ]
 
+const socialLinks = [
+  { label: 'Instagram', key: 'instagram', href: 'https://www.instagram.com/' },
+  { label: 'LinkedIn', key: 'linkedin', href: 'https://www.linkedin.com/' },
+  { label: 'Facebook', key: 'facebook', href: 'https://www.facebook.com/' },
+  { label: 'Twitter', key: 'twitter', href: 'https://twitter.com/' },
+]
+
+const footerContactLinks = [
+  { label: 'Instagram', href: 'https://www.instagram.com/' },
+  { label: 'Facebook', href: 'https://www.facebook.com/' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/' },
+  { label: 'Web flow', href: 'https://webflow.com/' },
+  { label: 'Dribbble', href: 'https://dribbble.com/' },
+]
+
+const faqs = [
+  {
+    question: 'How do you ensure a consistent flow of innovative ideas?',
+    answer:
+      'We maintain a dedicated team of creative professionals who stay updated with the latest industry trends and engage in regular brainstorming sessions to generate fresh and innovative ideas.',
+  },
+  {
+    question: 'Can you provide examples of your past brilliant ideas?',
+    answer:
+      'We regularly build campaign concepts, visual systems, launch content, and digital experiences that help brands communicate clearly and stand out in crowded markets.',
+  },
+  {
+    question: 'How do you handle client questions and feedback?',
+    answer:
+      'We keep communication clear and collaborative through regular check-ins, shared review points, and focused revisions that turn feedback into practical design improvements.',
+  },
+  {
+    question: 'What is your process for turning an idea into a successful project?',
+    answer:
+      'We start with strategy, shape the creative direction, prototype key ideas, refine through feedback, and deliver polished assets that are ready to launch with confidence.',
+  },
+  {
+    question: 'How do you tailor your ideas to meet the specific needs of different clients?',
+    answer:
+      "Every project is shaped around the client's goals, audience, and brand voice so the final solution feels specific, useful, and aligned with real business needs.",
+  },
+]
+
+function SocialIcon({ icon }) {
+  switch (icon) {
+    case 'instagram':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="4.5" y="4.5" width="15" height="15" rx="4.2" />
+          <circle cx="12" cy="12" r="3.5" />
+          <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
+        </svg>
+      )
+    case 'linkedin':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="5" y="9" width="3" height="10" rx="0.7" />
+          <circle cx="6.5" cy="6.5" r="1.5" fill="currentColor" stroke="none" />
+          <path d="M11 9v10M11 12.2c0-1.8 1.3-3.2 3.1-3.2 1.9 0 3.4 1.3 3.4 4v6M14.1 9c2 0 3.4 1.4 3.4 4" />
+        </svg>
+      )
+    case 'facebook':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M14.5 20v-7h2.4l.4-3h-2.8V8.1c0-.9.3-1.6 1.6-1.6H17V4a10 10 0 0 0-1.8-.1c-2.7 0-4.2 1.6-4.2 4.5V10H8.8v3H11v7" />
+        </svg>
+      )
+    case 'twitter':
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M19 7.2c-.5.2-1 .4-1.6.5a2.8 2.8 0 0 0 1.2-1.5c-.5.3-1.1.5-1.7.7a2.7 2.7 0 0 0-4.6 2.4A7.7 7.7 0 0 1 6.7 6.6a2.7 2.7 0 0 0 .8 3.6c-.4 0-.8-.1-1.2-.3 0 1.3.9 2.4 2.2 2.7-.4.1-.8.1-1.2 0 .3 1.1 1.4 1.9 2.6 1.9A5.4 5.4 0 0 1 6 16.6a7.6 7.6 0 0 0 4.1 1.2c4.9 0 7.6-4 7.6-7.6v-.3c.5-.4 1-.9 1.3-1.5Z" />
+        </svg>
+      )
+    default:
+      return null
+  }
+}
+
 function App() {
+  const [testimonialPage, setTestimonialPage] = useState(0)
+  const [teamPage, setTeamPage] = useState(0)
+  const [openFaq, setOpenFaq] = useState(0)
+  const testimonialPages = testimonialSlides.length
+  const visibleTestimonials = testimonialSlides[testimonialPage]
+  const totalTeamPages = teamSlides.length
+  const visibleTeam = teamSlides[teamPage]
+  const handleFaqToggle = (index) => {
+    setOpenFaq((currentOpen) => (currentOpen === index ? null : index))
+  }
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setTestimonialPage((currentPage) => (currentPage + 1) % testimonialPages)
+    }, 4500)
+
+    return () => window.clearInterval(timer)
+  }, [testimonialPages])
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setTeamPage((currentPage) => (currentPage + 1) % totalTeamPages)
+    }, 4200)
+
+    return () => window.clearInterval(timer)
+  }, [totalTeamPages])
+
   return (
     <div className="site-shell">
       <header className="topbar">
@@ -137,9 +332,17 @@ function App() {
                 <span aria-hidden="true">▴</span>
               </a>
               <div className="social-row" aria-label="Social links">
-                {['ig', 'in', 'f', 't'].map((label) => (
-                  <a key={label} href="#contact" className="social-chip">
-                    {label}
+                {socialLinks.map((social, index) => (
+                  <a
+                    key={social.key}
+                    href={social.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="social-chip"
+                    aria-label={social.label}
+                    title={social.label}
+                  >
+                    {index === 0 ? 'ig' : index === 1 ? 'in' : index === 2 ? 'f' : 't'}
                   </a>
                 ))}
               </div>
@@ -205,9 +408,11 @@ function App() {
         </section>
 
         <section className="section logo-strip" aria-label="Client logos">
-          <div className="logo-wordmark">Beka</div>
-          <div className="logo-wordmark">ConneX</div>
-          <div className="logo-wordmark">pilot</div>
+          {partnerLogos.map((logo) => (
+            <div className="logo-item" key={logo.name}>
+              <img className="logo-image" src={logo.image} alt={logo.name} />
+            </div>
+          ))}
         </section>
 
         <section className="section projects-section" id="portfolio">
@@ -241,22 +446,37 @@ function App() {
                 <p className="eyebrow">Key service & testimonials</p>
                 <h2>Services We Provide and What Clients Say</h2>
               </div>
-              <a className="button button-outline" href="#contact">
+              <a className="button button-outline" href="#services">
                 View Services <span aria-hidden="true">▴</span>
               </a>
             </div>
 
             <div className="feature-grid">
-              {featureCards.map((item, index) => (
-                <article className="feature-card" key={item.number}>
-                  <div className="feature-number">{item.number}</div>
-                  <div className="feature-body">
-                    <h3>{item.title}</h3>
-                    <p>{item.text}</p>
-                  </div>
-                  {index === 1 ? <div className="feature-photo" aria-hidden="true" /> : null}
-                </article>
-              ))}
+              <div className="feature-column">
+                {featureCards.slice(0, 2).map((item) => (
+                  <article className="feature-card" key={item.number}>
+                    <div className="feature-number">{item.number}.</div>
+                    <div className="feature-body">
+                      <h3>{item.title}</h3>
+                      <p>{item.text}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+
+              <div className="feature-photo" aria-hidden="true" />
+
+              <div className="feature-column">
+                {featureCards.slice(2).map((item) => (
+                  <article className="feature-card" key={item.number}>
+                    <div className="feature-number">{item.number}.</div>
+                    <div className="feature-body">
+                      <h3>{item.title}</h3>
+                      <p>{item.text}</p>
+                    </div>
+                  </article>
+                ))}
+              </div>
             </div>
 
             <div className="section-divider" />
@@ -264,13 +484,13 @@ function App() {
             <h2 className="center-title">Reviews of Our Premium Solutions</h2>
 
             <div className="testimonial-grid">
-              {[1, 2, 3].map((index) => (
-                <article className="testimonial-card" key={index}>
+              {visibleTestimonials.map((testimonial, index) => (
+                <article className="testimonial-card" key={`${testimonialPage}-${testimonial.name}-${index}`}>
                   <div className="testimonial-head">
-                    <div className="avatar" aria-hidden="true" />
+                    <div className={testimonial.avatarClass} aria-hidden="true" />
                     <div>
-                      <strong>Michel Perci</strong>
-                      <span>Designer</span>
+                      <strong>{testimonial.name}</strong>
+                      <span>{testimonial.role}</span>
                     </div>
                     <div className="rating">
                       <span>Rating</span>
@@ -278,18 +498,22 @@ function App() {
                     </div>
                   </div>
                   <div className="testimonial-line" />
-                  <p>
-                    It is a long established fact that a reader will be distracted by the readable content of a
-                    page when looking at its layout. The point of using Lorem Ipsum is that it has.
-                  </p>
+                  <p>{testimonial.copy}</p>
                 </article>
               ))}
             </div>
 
-            <div className="dots" aria-hidden="true">
-              <span className="dot active" />
-              <span className="dot" />
-              <span className="dot" />
+            <div className="dots testimonial-dots" aria-label="Testimonial pages">
+              {Array.from({ length: testimonialPages }).map((_, index) => (
+                <button
+                  key={index}
+                  type="button"
+                  className={index === testimonialPage ? 'dot active' : 'dot'}
+                  aria-label={`Show testimonial page ${index + 1}`}
+                  aria-pressed={index === testimonialPage}
+                  onClick={() => setTestimonialPage(index)}
+                />
+              ))}
             </div>
           </div>
         </section>
@@ -299,17 +523,23 @@ function App() {
           <h2>The Team Behind the Magic</h2>
 
           <div className="team-grid">
-            {team.map((member, index) => (
+            {visibleTeam.map((member) => (
               <article className="team-card" key={member.name}>
-                <div className={`team-photo team-photo-${index + 1}`}>
-                  {index === 0 ? (
-                    <div className="team-socials" aria-hidden="true">
-                      <span>ig</span>
-                      <span>in</span>
-                      <span>f</span>
-                      <span>t</span>
-                    </div>
-                  ) : null}
+                <div className={`team-photo ${member.photoClass}`}>
+                  <div className="team-socials">
+                    {socialLinks.map((social) => (
+                      <a
+                        key={social.key}
+                        href={social.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label={social.label}
+                        title={social.label}
+                      >
+                        <SocialIcon icon={social.key} />
+                      </a>
+                    ))}
+                  </div>
                 </div>
                 <h3>{member.name}</h3>
                 <p>{member.role}</p>
@@ -317,10 +547,17 @@ function App() {
             ))}
           </div>
 
-          <div className="dots" aria-hidden="true">
-            <span className="dot active" />
-            <span className="dot" />
-            <span className="dot" />
+          <div className="dots team-dots" aria-label="Team pages">
+            {Array.from({ length: totalTeamPages }).map((_, index) => (
+              <button
+                key={index}
+                type="button"
+                className={index === teamPage ? 'dot active' : 'dot'}
+                aria-label={`Show team page ${index + 1}`}
+                aria-pressed={index === teamPage}
+                onClick={() => setTeamPage(index)}
+              />
+            ))}
           </div>
         </section>
 
@@ -332,26 +569,26 @@ function App() {
               <h2>Consistently Providing Smart Ideas &amp; Resolving Inquiries</h2>
 
               <div className="faq-list">
-                <details open>
-                  <summary>How do you ensure a consistent flow of innovative ideas?</summary>
-                  <p>
-                    We maintain a dedicated team of creative professionals who stay updated with the latest
-                    industry trends and engage in regular brainstorming sessions to generate fresh and
-                    innovative ideas.
-                  </p>
-                </details>
-                <details>
-                  <summary>Can you provide examples of your past brilliant ideas?</summary>
-                </details>
-                <details>
-                  <summary>How do you handle client questions and feedback?</summary>
-                </details>
-                <details>
-                  <summary>What is your process for turning an idea into a successful project?</summary>
-                </details>
-                <details>
-                  <summary>How do you tailor your ideas to meet the specific needs of different clients?</summary>
-                </details>
+                {faqs.map((faq, index) => {
+                  const isOpen = openFaq === index
+
+                  return (
+                    <div className={isOpen ? 'faq-item open' : 'faq-item'} key={faq.question}>
+                      <button
+                        type="button"
+                        className="faq-question"
+                        aria-expanded={isOpen}
+                        onClick={() => handleFaqToggle(index)}
+                      >
+                        <span>{faq.question}</span>
+                        <span className="faq-icon" aria-hidden="true">
+                          {isOpen ? '-' : '+'}
+                        </span>
+                      </button>
+                      {isOpen ? <p>{faq.answer}</p> : null}
+                    </div>
+                  )
+                })}
               </div>
             </div>
           </div>
@@ -374,7 +611,7 @@ function App() {
           </div>
         </section>
 
-        <section className="section news-section" id="contact">
+        <section className="section news-section" id="news">
           <p className="eyebrow">Our latest news</p>
           <h2>Our Solutions Alongside the Latest News &amp; Blogs</h2>
 
@@ -383,7 +620,13 @@ function App() {
               <article className="news-card" key={`${post.date}-${index}`}>
                 <div className={`news-photo news-photo-${index + 1}`} />
                 <div className="news-meta">
-                  <span>Mar 10, 2024</span>
+                  <span className="news-date">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <rect x="4.5" y="6.5" width="15" height="13" rx="1.8" />
+                      <path d="M8 4.5v4M16 4.5v4M4.5 10.5h15" />
+                    </svg>
+                    Mar 10, 2024
+                  </span>
                   <span>by- Guy Hawkins</span>
                 </div>
                 <h3>{post.title}</h3>
@@ -400,18 +643,20 @@ function App() {
         </section>
       </main>
 
-      <footer className="footer">
+      <footer className="footer" id="contact">
         <div className="cta-band">
-          <div>
-            <h2>Have a project in mind?</h2>
-            <p>
-              Ready to bring your vision to life? Share your project ideas with us, and let&apos;s create
-              something extraordinary together.
-            </p>
+          <div className="cta-band-inner">
+            <div className="cta-copy">
+              <h2>Have a project in mind?</h2>
+              <p>
+                Ready to bring your vision to life? Share your project ideas with us, and let&apos;s
+                create something extraordinary together.
+              </p>
+            </div>
+            <a className="button button-light" href="#contact">
+              Let&apos;s Talk
+            </a>
           </div>
-          <a className="button button-light" href="#contact">
-            Let&apos;s Talk
-          </a>
         </div>
 
         <div className="footer-main">
@@ -429,9 +674,17 @@ function App() {
             <a href="mailto:hello@wooprex.co.bd">hello@wooprex.co.bd</a>
             <a href="tel:+34675382860">+34 675382860</a>
             <div className="social-row footer-socials">
-              {['ig', 'in', 'f', 't'].map((label) => (
-                <a key={label} href="#contact" className="social-chip social-chip-dark">
-                  {label}
+              {socialLinks.map((social) => (
+                <a
+                  key={social.key}
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="social-chip social-chip-dark"
+                  aria-label={social.label}
+                  title={social.label}
+                >
+                  <SocialIcon icon={social.key} />
                 </a>
               ))}
             </div>
@@ -456,11 +709,11 @@ function App() {
             </div>
             <div>
               <h3>Contact</h3>
-              <a href="#contact">Instagram</a>
-              <a href="#contact">Facebook</a>
-              <a href="#contact">LinkedIn</a>
-              <a href="#contact">Web flow</a>
-              <a href="#contact">Dribbble</a>
+              {footerContactLinks.map((link) => (
+                <a key={link.label} href={link.href} target="_blank" rel="noreferrer">
+                  {link.label}
+                </a>
+              ))}
             </div>
             <div className="newsletter">
               <h3>Newsletter</h3>
