@@ -306,7 +306,7 @@ function App() {
 
         <div className="topbar-actions">
           <button className="icon-button" type="button" aria-label="Search">
-            <span aria-hidden="true">⌕</span>
+            <span aria-hidden="true">&#8981;</span>
           </button>
           <a className="button button-primary" href="#contact">
             Let&apos;s Contact
@@ -329,7 +329,7 @@ function App() {
             <div className="hero-actions">
               <a className="button button-primary button-lg" href="#services">
                 Get started
-                <span aria-hidden="true">▴</span>
+                <span aria-hidden="true">&#9652;</span>
               </a>
               <div className="social-row" aria-label="Social links">
                 {socialLinks.map((social) => (
@@ -401,7 +401,7 @@ function App() {
                 across mobile and social platforms while gathering and analyzing data for insights.
               </p>
               <a className="read-more" href="#team">
-                Read More <span aria-hidden="true">▴</span>
+                Read More <span aria-hidden="true">&#9652;</span>
               </a>
             </div>
           </div>
@@ -422,8 +422,8 @@ function App() {
               <h2>Take a Tour of Our Project</h2>
             </div>
             <div className="arrow-controls" aria-hidden="true">
-              <button type="button">⌃</button>
-              <button type="button">⌃</button>
+              <button type="button">&#8963;</button>
+              <button type="button">&#8963;</button>
             </div>
           </div>
 
@@ -447,7 +447,7 @@ function App() {
                 <h2>Services We Provide and What Clients Say</h2>
               </div>
               <a className="button button-outline" href="#services">
-                View Services <span aria-hidden="true">▴</span>
+                View Services <span aria-hidden="true">&#9652;</span>
               </a>
             </div>
 
@@ -494,7 +494,7 @@ function App() {
                     </div>
                     <div className="rating">
                       <span>Rating</span>
-                      <div aria-hidden="true">★★★★★</div>
+                      <div aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
                     </div>
                   </div>
                   <div className="testimonial-line" />
@@ -635,7 +635,7 @@ function App() {
                   insights.
                 </p>
                 <a className="read-more" href="#contact">
-                  Read More <span aria-hidden="true">▴</span>
+                  Read More <span aria-hidden="true">&#9652;</span>
                 </a>
               </article>
             ))}
@@ -721,7 +721,7 @@ function App() {
               <div className="newsletter-form">
                 <input type="email" placeholder="Enter email address" aria-label="Email address" />
                 <button type="button" className="button button-outline">
-                  Send <span aria-hidden="true">▴</span>
+                  Send <span aria-hidden="true">&#9652;</span>
                 </button>
               </div>
             </div>
@@ -729,7 +729,7 @@ function App() {
         </div>
 
         <div className="footer-bottom">
-          <span>Copyright © 2023 . Wooprex creative. All Rights Reserved.</span>
+          <span>Copyright &copy; 2023 . Wooprex creative. All Rights Reserved.</span>
           <div className="footer-bottom-links">
             <a href="#contact">Terms & Conditions</a>
             <a href="#contact">Personal Data</a>
