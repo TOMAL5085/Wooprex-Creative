@@ -256,12 +256,16 @@ function App() {
   const [testimonialPage, setTestimonialPage] = useState(0)
   const [teamPage, setTeamPage] = useState(0)
   const [openFaq, setOpenFaq] = useState(0)
+  const [mobileNavOpen, setMobileNavOpen] = useState(false)
   const testimonialPages = testimonialSlides.length
   const visibleTestimonials = testimonialSlides[testimonialPage]
   const totalTeamPages = teamSlides.length
   const visibleTeam = teamSlides[teamPage]
   const handleFaqToggle = (index) => {
     setOpenFaq((currentOpen) => (currentOpen === index ? null : index))
+  }
+  const handleNavClick = () => {
+    setMobileNavOpen(false)
   }
 
   useEffect(() => {
@@ -294,14 +298,39 @@ function App() {
           </span>
         </a>
 
-        <nav className="nav" aria-label="Main navigation">
+        <button
+          type="button"
+          className={mobileNavOpen ? 'nav-toggle active' : 'nav-toggle'}
+          aria-label="Toggle navigation menu"
+          aria-expanded={mobileNavOpen}
+          aria-controls="main-nav"
+          onClick={() => setMobileNavOpen((currentOpen) => !currentOpen)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+
+        <nav
+          id="main-nav"
+          className={mobileNavOpen ? 'nav nav-open' : 'nav'}
+          aria-label="Main navigation"
+        >
           {navItems.map((item) => (
-            <a key={item} href={`#${item.toLowerCase()}`} className={item === 'Home' ? 'active' : ''}>
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className={item === 'Home' ? 'active' : ''}
+              onClick={handleNavClick}
+            >
               {item}
               {item === 'Home' ? <span className="active-dot" aria-hidden="true" /> : null}
               {item === 'Pages' ? <span className="nav-caret" aria-hidden="true" /> : null}
             </a>
           ))}
+          <a className="button button-primary nav-mobile-cta" href="#contact" onClick={handleNavClick}>
+            Let&apos;s Contact
+          </a>
         </nav>
 
         <div className="topbar-actions">
