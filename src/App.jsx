@@ -332,7 +332,7 @@ function App() {
                 <span aria-hidden="true">▴</span>
               </a>
               <div className="social-row" aria-label="Social links">
-                {socialLinks.map((social, index) => (
+                {socialLinks.map((social) => (
                   <a
                     key={social.key}
                     href={social.href}
@@ -342,7 +342,7 @@ function App() {
                     aria-label={social.label}
                     title={social.label}
                   >
-                    {index === 0 ? 'ig' : index === 1 ? 'in' : index === 2 ? 'f' : 't'}
+                    <SocialIcon icon={social.key} />
                   </a>
                 ))}
               </div>

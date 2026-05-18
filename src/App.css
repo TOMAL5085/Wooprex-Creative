@@ -295,9 +295,24 @@
   color: #8c96a3;
   border: 1px solid #d3d8df;
   text-decoration: none;
-  font-size: 0.67rem;
-  font-weight: 700;
-  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+.social-chip svg {
+  width: 13px;
+  height: 13px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.social-chip:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  transform: translateY(-2px);
 }
 
 .social-chip-dark {
